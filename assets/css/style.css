@@ -1,0 +1,28 @@
+html {
+    
+}
+
+h1 {
+    font-size: 112px;
+    text-align: center;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+#beginGame {
+text-align: center;
+}
+
+#startButton {
+    font-size: 50px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#questionsDiv {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    /* text-align: center; */
+    font-size: 24px;
+}
+
