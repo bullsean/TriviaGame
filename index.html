@@ -18,52 +18,35 @@
         
         
         <div id="questionsDiv">
-        <div id="timer">Counter</div>
-            <div class="card">
-                <h5 class="card-header">Question 1</h5>
-                <div class="card-body">
-                    <h5 class="card-title">I am awesome</h5>
-                    <div class="card-text">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" id="question1" value="option1">
-                            <label class="form-check-label" for="exampleRadios1">
-                                True
-                            </label>
+            <div id="timer">00:30</div>
+                <form name="questionSpace">
+                    <div class="card">
+                        <h5 class="card-header" id="questionText">Question 1</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">I am awesome</h5>
+                            <div class="card-text">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="option1" name="multipleChoice">
+                                    <label id="choice1" class="form-check-label">
+                                        True
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"  value="option2" name="multipleChoice">
+                                    <label id="choice2" class="form-check-label">
+                                        False
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"  value="option3" name="multipleChoice">
+                                    <label id="choice3" class="form-check-label">
+                                        False
+                                    </label>
+                                </div>
+                            </div>  
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" id="question1" value="option2">
-                            <label class="form-check-label" for="exampleRadios1">
-                                False
-                            </label>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="card">
-                <h5 class="card-header">Question 1</h5>
-                <div class="card-body">
-                    <h5 class="card-title">I am awesome</h5>
-                    <div class="card-text">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" id="question1" value="option1">
-                            <label class="form-check-label" for="exampleRadios1">
-                                True
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" id="question1" value="option2">
-                            <label class="form-check-label" for="exampleRadios1">
-                                False
-                            </label>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-            <br>
-            <br>
-           
+                    </div>
+                </form>
         </div>
         <div id="endMessage">
             <div>All Done!</div>
