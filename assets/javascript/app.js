@@ -12,31 +12,31 @@ var question = [
     option1: "heyo",
     option2: "salud",
     option3: "ciao",
-    answer: "ciao"
+    answer: "c"
     },
     {prompt: "What colors are included in the Italian flag?",
     option1: "green, blue, brown",
     option2: "red, yellow, blue",
     option3: "green, white, red",
-    answer: "green, white, red"
+    answer: "c"
     },
     {prompt: "What is the fashion capital of Italy?",
     option1: "Rome",
     option2: "Venice",
     option3: "Milan",
-    answer: "Milan"
+    answer: "c"
     },
     {prompt: "What major Italian car brand recently made its way to America?",
     option1: "Subaru",
     option2: "Fiat",
     option3: "Clio",
-    answer: "Fiat"
+    answer: "b"
     },
     {prompt: "What's the best Italian baby girl name?",
     option1: "Giorgia",
     option2: "Cinzia",
     option3: "Noemi",
-    answer: "Giorgia"
+    answer: "a"
     }
 ]
 var intervalId;
@@ -56,28 +56,69 @@ var stopwatch = {
         $("#timer").show();
         $("#questionsDiv").show();
 
-        for (var i = 0; i<question.length; i++) {
-            var questionAnswered = false;
-            $("#questionText").text(question[i].prompt);
-            $("#choice1").text(question[i].option1);
-            $("#choice2").text(question[i].option2);
-            $("#choice3").text(question[i].option3);
-            stopwatch.radioCheck();
-            //call function that checks whether radio button checked
+        // for (var i = 0; i<question.length; i++) {
+        //     // var response = document.questionSpace.multipleChoice[i].checked;
+        //     $("#questionText").text(question[i].prompt);
+        //     $("#choice1").text(question[i].option1);
+        //     $("#choice2").text(question[i].option2);
+        //     $("#choice3").text(question[i].option3);
+        //     // if (response==true){
+        //     //     correctCount++;}
+        //     stopwatch.radioCheck();
+        //     //call function that checks whether radio button checked
             
             
-        }
+        // }
 
     },
 
     radioCheck: function() {
         console.log("Radio button being checked");
         for (var i=0;i<document.questionSpace.multipleChoice.length;i++){
-            if (document.questionSpace.multipleChoice[i].checked==true){
-            correctCount++;
+            if (document.questionSpace.multipleChoice[i].checked===true){
+                var answer = document.questionSpace.multipleChoice[i].value;
+                console.log(answer);
+                if(answer === "b") {
+                    correctCount++;
+                } else {
+                    incorrectCount++;
+                } 
+                    
             break //exist for loop, as target acquired.
+            } else {
+                unansweredCount++;
             }
+        }
+        for (var i=0;i<document.questionSpace2.multipleChoice.length;i++){
+            if (document.questionSpace2.multipleChoice[i].checked===true){
+                var answer = document.questionSpace2.multipleChoice[i].value;
+                console.log(answer);
+                if(answer === "b") {
+                    correctCount++;
+                } else {
+                    incorrectCount++;
+                }
+                    
+            break //exist for loop, as target acquired.
+            } else {
+                unansweredCount++;
             }
+        }
+        for (var i=0;i<document.questionSpace3.multipleChoice.length;i++){
+            if (document.questionSpace3.multipleChoice[i].checked===true){
+                var answer = document.questionSpace3.multipleChoice[i].value;
+                console.log(answer);
+                if(answer === "b") {
+                    correctCount++;
+                } else {
+                    incorrectCount++;
+                }
+                    
+            break //exist for loop, as target acquired.
+            } else {
+                unansweredCount++;
+            }
+        }
     },
 
     count: function() {
@@ -87,9 +128,13 @@ var stopwatch = {
         console.log(stopwatch.time)
 
         if(stopwatch.time === 0) {
+            stopwatch.radioCheck();
             $("#questionsDiv").hide();
             $("#timer").hide();
             $("#endMessage").show();
+            $("#correctScore").text(correctCount);
+            $("#incorrectScore").text(incorrectCount);
+            $("#unansweredScore").text(unansweredCount);
             stopwatch.stop();
         }
     },
