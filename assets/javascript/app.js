@@ -46,7 +46,7 @@ var correctCount = 0;
 var incorrectCount = 0;
 var unansweredCount = 0;
 var stopwatch = {
-    time: 30,
+    time: 10,
     start: function() {
         console.log("Start button clicked!");
         intervalId = setInterval(stopwatch.count, 1*1000);
@@ -84,40 +84,34 @@ var stopwatch = {
                     incorrectCount++;
                 } 
                     
-            break //exist for loop, as target acquired.
-            } else {
-                unansweredCount++;
-            }
+                break
+            } 
         }
         for (var i=0;i<document.questionSpace2.multipleChoice.length;i++){
             if (document.questionSpace2.multipleChoice[i].checked===true){
                 var answer = document.questionSpace2.multipleChoice[i].value;
                 console.log(answer);
-                if(answer === "b") {
+                if(answer === "c") {
                     correctCount++;
                 } else {
                     incorrectCount++;
                 }
                     
-            break //exist for loop, as target acquired.
-            } else {
-                unansweredCount++;
-            }
+                break 
+            } 
         }
         for (var i=0;i<document.questionSpace3.multipleChoice.length;i++){
             if (document.questionSpace3.multipleChoice[i].checked===true){
                 var answer = document.questionSpace3.multipleChoice[i].value;
                 console.log(answer);
-                if(answer === "b") {
+                if(answer === "c") {
                     correctCount++;
                 } else {
                     incorrectCount++;
                 }
                     
-            break //exist for loop, as target acquired.
-            } else {
-                unansweredCount++;
-            }
+            break 
+            } 
         }
     },
 
@@ -134,7 +128,6 @@ var stopwatch = {
             $("#endMessage").show();
             $("#correctScore").text(correctCount);
             $("#incorrectScore").text(incorrectCount);
-            $("#unansweredScore").text(unansweredCount);
             stopwatch.stop();
         }
     },
