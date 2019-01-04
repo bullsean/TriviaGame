@@ -54,7 +54,22 @@ var stopwatch = {
         gameStarted = true;
         $("#startButton").hide();
         $("#timer").show();
-        $("#questionsDiv").show();
+        $("dynamicQuestionsDiv").show();
+
+        //when start button clicked, show dynamicQuestionsDiv
+        //dynamically create questions - for loop through the question object to print the objects onto the page in their own divs
+        for (var i = 0; i<question.length; i++) {
+            console.log(question[i].prompt)
+
+            var newDiv = $('<div>');
+            var newQuestion = $('<div>'+ question[i].prompt +'</div>');
+            var optionOne = $('<div><input class="form-check-input" id="choice1" type="radio" value="a" name="group'+i+'">'+ question[i].option1 +'<div>');
+            var optionTwo = $('<div><input class="form-check-input" id="choice2" type="radio" value="b" name="group'+i+'">'+ question[i].option2 +'<div>');
+            var optionThree = $('<div><input class="form-check-input" id="choice3" type="radio" value="c" name="group'+i+'">'+ question[i].option3 +'<div>');
+
+            $("#dynamicQuestionsDiv").append(newDiv, newQuestion, optionOne, optionTwo, optionThree);
+        };
+        
 
         // for (var i = 0; i<question.length; i++) {
         //     // var response = document.questionSpace.multipleChoice[i].checked;
@@ -73,46 +88,19 @@ var stopwatch = {
     },
 
     radioCheck: function() {
-        console.log("Radio button being checked");
-        for (var i=0;i<document.questionSpace.multipleChoice.length;i++){
-            if (document.questionSpace.multipleChoice[i].checked===true){
-                var answer = document.questionSpace.multipleChoice[i].value;
-                console.log(answer);
-                if(answer === "b") {
-                    correctCount++;
-                } else {
-                    incorrectCount++;
-                } 
-                    
-                break
-            } 
+        for (var i = 0; i<question.length; i++) {
+            console.log($(`input[name=group${i}]:checked`))
+            var $input = $(`input[name=group${i}]:checked`);
+            var value = $input.attr("value");
+            // console.log(value)
+            if (value === question[i].answer) {
+                console.log("RIGHT!")
+                correctCount++;
+            } else {
+                console.log("WRONG!")
+                incorrectCount++;
         }
-        for (var i=0;i<document.questionSpace2.multipleChoice.length;i++){
-            if (document.questionSpace2.multipleChoice[i].checked===true){
-                var answer = document.questionSpace2.multipleChoice[i].value;
-                console.log(answer);
-                if(answer === "c") {
-                    correctCount++;
-                } else {
-                    incorrectCount++;
-                }
-                    
-                break 
-            } 
-        }
-        for (var i=0;i<document.questionSpace3.multipleChoice.length;i++){
-            if (document.questionSpace3.multipleChoice[i].checked===true){
-                var answer = document.questionSpace3.multipleChoice[i].value;
-                console.log(answer);
-                if(answer === "c") {
-                    correctCount++;
-                } else {
-                    incorrectCount++;
-                }
-                    
-            break 
-            } 
-        }
+        };
     },
 
     count: function() {
@@ -123,7 +111,7 @@ var stopwatch = {
 
         if(stopwatch.time === 0) {
             stopwatch.radioCheck();
-            $("#questionsDiv").hide();
+            $("#dynamicQuestionsDiv").hide();
             $("#timer").hide();
             $("#endMessage").show();
             $("#correctScore").text(correctCount);
